@@ -16,9 +16,9 @@ int main()
 	{
 		array[j]=array1[j];
 	}
-	for(int j=len1-1;j<len1-1+len2;j++)
+	for(int j=len1;j<len1+len2;j++)
 	{
-		array[j]=array2[j-len1+1];
+		array[j]=array2[j-len1];
 	}
 	int len=len1+len2,swapped=0,temp;
 	for(int j=0;j<len-1;j++)
