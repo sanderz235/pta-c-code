@@ -1,2 +1,2 @@
 # pta-c-code
-上传一些平时pta作业的C语言代码
+Some C language code for PTA assignments.
