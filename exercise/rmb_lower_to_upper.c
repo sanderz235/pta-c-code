@@ -8,31 +8,65 @@ int get_digit(int n){
 	}
 	return cnt;
 }
-void get_qian(int n){
+void get_qian(int started,int dgt,int n){
 	int qian=n/1000;
 	int bai=n/100%10;
 	int shi=n/10%10;
 	int ge=n%10;
-	printf("%s仟%s佰%s拾%s",hanzi[qian],hanzi[bai],hanzi[shi],hanzi[ge]);
+	if(!started){
+		switch (dgt)
+		{
+		case 4:
+			goto tag1;
+			break;
+		case 3:
+			goto tag2;
+			break;
+		case 2:
+			goto tag3;
+			break;
+		case 1:
+			goto tag4;
+			break;
+		default:
+			break;
+		}
+	}
+	tag1:
+	printf("%s仟",hanzi[qian]);
+	tag2:
+	printf("%s佰",hanzi[bai]);
+	tag3:
+	printf("%s拾",hanzi[shi]);
+	tag4:
+	printf("%s",hanzi[ge]);
 }
 int main()
 {
-	int n;
+	int n,started=0,dgt;//qian:4 bai:3 shi:2 ge:1
 	scanf("%d",&n);
 	int yi,wan;
 	if(get_digit(n)==9){
 		yi=n/100000000;
 		printf("%s亿",hanzi[yi]);
 		n-=yi*100000000;
+		started=1;
 		// printf("%d",n);
 	}
 	if(get_digit(n)>=5){
 		wan=n/10000;
-		get_qian(wan);
+		if(!started){
+			dgt=get_digit(wan);
+		}
+		get_qian(started,dgt,wan);
 		printf("万");
+		started=1;
 		n-=wan*10000;
 	}
-	get_qian(n);
+	if(!started){
+		dgt=get_digit(n);
+	}
+	get_qian(started,dgt,n);
 	printf("元\n");
 	return 0;
  } 
